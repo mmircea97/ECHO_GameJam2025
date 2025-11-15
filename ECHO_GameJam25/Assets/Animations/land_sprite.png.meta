@@ -121,12 +121,12 @@ TextureImporter:
       name: land_sprite_0
       rect:
         serializedVersion: 2
-        x: 183
-        y: 306
-        width: 154
-        height: 150
+        x: 89
+        y: 37
+        width: 286
+        height: 439
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -143,12 +143,12 @@ TextureImporter:
       name: land_sprite_1
       rect:
         serializedVersion: 2
-        x: 602
-        y: 47
-        width: 266
-        height: 398
+        x: 589
+        y: 37
+        width: 286
+        height: 439
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: land_sprite_2
       rect:
         serializedVersion: 2
-        x: 1189
-        y: 302
-        width: 150
-        height: 119
+        x: 1089
+        y: 37
+        width: 286
+        height: 439
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: land_sprite_3
       rect:
         serializedVersion: 2
-        x: 1647
-        y: 36
-        width: 186
-        height: 299
+        x: 1589
+        y: 37
+        width: 286
+        height: 439
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,77 +205,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: land_sprite_4
-      rect:
-        serializedVersion: 2
-        x: 1667
-        y: 330
-        width: 159
-        height: 117
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa0414266df2b4e80800000000000000
-      internalID: -8193402499252535126
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: land_sprite_5
-      rect:
-        serializedVersion: 2
-        x: 95
-        y: 46
-        width: 260
-        height: 252
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7079298fb49e5ed0800000000000000
-      internalID: -2423335999117889411
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: land_sprite_6
-      rect:
-        serializedVersion: 2
-        x: 1144
-        y: 42
-        width: 190
-        height: 279
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ee253582ddc2e1a00800000000000000
-      internalID: 729069518056542958
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0b1cdf474e404db42a3de404dd8b0447
     internalID: 0
     vertices: []
     indices: 

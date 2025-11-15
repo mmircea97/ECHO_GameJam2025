@@ -68,9 +68,19 @@ namespace TarodevController
                 else _animator.SetBool("isWalking", false);
             }
 
+            if (!_grounded)
+                _animator.SetBool("isJumping", true);
+            else _animator.SetBool("hasLanded", false);
+            if (!_grounded && Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
+            {
+                _animator.SetBool("isJumping", false);
+                _animator.SetBool("hasLanded", true);
+            }
 
-            
-            if(!_grounded && secondJump)
+
+
+
+            if (!_grounded && secondJump)
                 if (Keyboard.current.spaceKey.wasPressedThisFrame)
                 {
                     _jumpToConsume = true;
