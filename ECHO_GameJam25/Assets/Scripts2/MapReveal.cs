@@ -6,6 +6,7 @@ public class MapReveal : MonoBehaviour
     [SerializeField]
     private GameObject gameObject;
 
+
     [SerializeField]
     private float maxDistance;
 
