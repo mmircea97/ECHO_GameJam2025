@@ -24,7 +24,9 @@ namespace TarodevController
 
         private bool isHanging;
         private bool secondJump;
-        private bool isDashing;
+
+        [SerializeField]
+        private Animator _animator;
      
 
         #region Interface
@@ -46,16 +48,27 @@ namespace TarodevController
 
             isHanging = false;
             secondJump = false;
-            isDashing = false;
         }
 
         private void Update()
         {
+
+          
+
             _time += Time.deltaTime;
             GatherInput();
 
             if (_grounded)
+            {
                 secondJump = true;
+                if(Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed)
+                {     
+                    _animator.SetBool("isWalking", true);
+                }
+                else _animator.SetBool("isWalking", false);
+            }
+
+
             
             if(!_grounded && secondJump)
                 if (Keyboard.current.spaceKey.wasPressedThisFrame)
@@ -71,9 +84,16 @@ namespace TarodevController
                 _stats.MaxFallSpeed += _stats.SlideSpeed;
             }
             
+            
             if((Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed) && Keyboard.current.leftCtrlKey.wasPressedThisFrame)
+            {
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed * _stats.DashSpeed, _stats.Acceleration * 15f * Time.fixedDeltaTime);
-                
+                _animator.SetBool("isDashing", true);
+            }
+            else { _animator.SetBool("isDashing", false); }
+
+
+
 
             if (isHanging && Keyboard.current.wKey.isPressed)
             {
@@ -272,12 +292,18 @@ namespace TarodevController
                 {
                     isHanging = true;
                 }
+                if (other.collider.transform.position.y < this.transform.position.y && Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
+                    isHanging = false;
+
             }
+
+           
         }
 
         private void OnCollisionExit2D(Collision2D other)
         {
             isHanging = false;
+            _animator.SetBool("isHanging", false);
             _stats.MaxFallSpeed = 40f;
         }
 
@@ -286,6 +312,7 @@ namespace TarodevController
             if (isHanging)
             {
                 HandleHanging();
+                _animator.SetBool("isHanging", true);
             }
         }
 
