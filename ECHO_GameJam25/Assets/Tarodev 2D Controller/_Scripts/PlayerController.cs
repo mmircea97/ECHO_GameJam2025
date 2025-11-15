@@ -315,10 +315,15 @@ namespace TarodevController
             isHanging = false;
             _animator.SetBool("isHanging", false);
             _stats.MaxFallSpeed = 40f;
+            if (other.gameObject.CompareTag("Platform"))
+                this.transform.parent = null;
         }
 
         private void OnCollisionStay2D(Collision2D other)
         {
+
+            if(other.gameObject.CompareTag("Platform"))
+                this.transform.parent = other.gameObject.transform;
             if (isHanging)
             {
                 HandleHanging();
