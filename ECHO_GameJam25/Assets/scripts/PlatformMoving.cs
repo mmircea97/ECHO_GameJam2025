@@ -25,7 +25,6 @@ public class PlatformMoving : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, movSpeed * Time.deltaTime);
-        Debug.Log("transform.position");
 
         if (transform.position == nextPosition)
         {

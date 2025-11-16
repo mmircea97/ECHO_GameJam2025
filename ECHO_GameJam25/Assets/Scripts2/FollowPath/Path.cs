@@ -8,23 +8,36 @@ public class Path : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
 
+    [SerializeField]
+    private float jitterAmount;
+
+    [SerializeField]
+    private float jitterSpeed;
+
+    [SerializeField]
+    private float distanceFromPointThreshold;
+
     private int pointIndex;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //pointIndex = 0;
         transform.position = Points[pointIndex].transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        DontDestroyOnLoad(this.gameObject);
-        if (pointIndex >= Points.Length - 1)
+        
+        if (pointIndex <= Points.Length - 1)
         {
-            transform.position = Vector3.MoveTowards(transform.position, Points[pointIndex].transform.position, moveSpeed * Time.deltaTime);
+            Vector3 jitteredPosition = new Vector3(Mathf.Sin(Time.time * jitterSpeed) * jitterAmount, Mathf.Cos(Time.time * jitterSpeed) * jitterAmount, 0);
+            transform.position = Vector2.MoveTowards(transform.position, Points[pointIndex].transform.position, moveSpeed * Time.deltaTime);
 
-            if (transform.position == Points[pointIndex].transform.position)
+            transform.position += jitteredPosition;
+
+            if (Vector2.Distance(transform.position,Points[pointIndex].transform.position) < distanceFromPointThreshold)
             {
                 pointIndex += 1;
             }
