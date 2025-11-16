@@ -1002,6 +1002,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadingPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 7539700253199765278, guid: 8a6b0c3dfddff004facc3904cd86c7d4, type: 3}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
