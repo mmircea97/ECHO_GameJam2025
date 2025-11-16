@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -68,14 +69,25 @@ namespace TarodevController
                 else _animator.SetBool("isWalking", false);
             }
 
-            if (!_grounded)
+            /*if (!_grounded)
+                _animator.SetBool("isJumping", true);*/
+
+            if(!_grounded)
+            {
+                if (Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed)
+                {
+                    _animator.SetBool("isWalking", false);
+                }
                 _animator.SetBool("isJumping", true);
-            else _animator.SetBool("hasLanded", false);
-            if (!_grounded && Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
+            }
+
+            if (_grounded)
             {
                 _animator.SetBool("isJumping", false);
-                _animator.SetBool("hasLanded", true);
+                WaitTwoSecs();
+
             }
+            
 
 
 
@@ -91,7 +103,7 @@ namespace TarodevController
             if (isHanging)
             {
                 secondJump = true;
-                _stats.MaxFallSpeed += _stats.SlideSpeed;
+                //_stats.MaxFallSpeed += _stats.SlideSpeed;
             }
             
             
@@ -171,6 +183,11 @@ namespace TarodevController
         
         private float _frameLeftGrounded = float.MinValue;
         private bool _grounded;
+
+        IEnumerator WaitTwoSecs()
+        {
+            yield return new WaitForSeconds(1);
+        }
 
         private void CheckCollisions()
         {
@@ -290,6 +307,8 @@ namespace TarodevController
 
         private void OnCollisionEnter2D(Collision2D other)
         {
+            Vector3 direction = transform.position - other.gameObject.transform.position;
+
             if (other.collider.CompareTag("Spring"))
             {
                 ExecuteBounce();
@@ -297,17 +316,24 @@ namespace TarodevController
 
             if (other.collider.CompareTag("Platform"))
             {
-                if (other.collider.transform.position.x > this.transform.position.x ||
-                    other.collider.transform.position.x < this.transform.position.x)
+                //if (other.collider.transform.position.x > this.transform.position.x || other.collider.transform.position.x < this.transform.position.x)
+                if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
                 {
                     isHanging = true;
+                    //if(!Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
+                    _animator.SetBool("isHanging", true);
                 }
-                if (other.collider.transform.position.y < this.transform.position.y && Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
-                    isHanging = false;
+                else
+                {
+                    if(direction.y>0)
+                        isHanging = false;
+                }
+                /*if (other.collider.transform.position.y < this.transform.position.y && Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
+                    isHanging = false;*/
 
             }
 
-           
+
         }
 
         private void OnCollisionExit2D(Collision2D other)
@@ -327,7 +353,7 @@ namespace TarodevController
             if (isHanging)
             {
                 HandleHanging();
-                _animator.SetBool("isHanging", true);
+                //_animator.SetBool("isHanging", true);
             }
         }
 
