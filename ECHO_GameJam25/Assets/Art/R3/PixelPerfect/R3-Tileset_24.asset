@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: R3-Tileset_24
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 649882051, guid: 9a649a49a8637f444bf0e1ead38b6faa, type: 3}
+  m_Sprite: {fileID: -1384148524, guid: 9a649a49a8637f444bf0e1ead38b6faa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
