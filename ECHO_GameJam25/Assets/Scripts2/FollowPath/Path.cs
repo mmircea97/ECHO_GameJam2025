@@ -18,9 +18,9 @@ public class Path : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        DontDestroyOnLoad(this.gameObject);
-        if (pointIndex >= Points.Length - 1)
+    { 
+        if (pointIndex <= Points.Length - 1)
+
         {
             transform.position = Vector3.MoveTowards(transform.position, Points[pointIndex].transform.position, moveSpeed * Time.deltaTime);
 

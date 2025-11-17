@@ -107,7 +107,7 @@ namespace TarodevController
             }
             
             
-            if((Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed) && Keyboard.current.leftCtrlKey.wasPressedThisFrame)
+            if((Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed) && Keyboard.current.leftShiftKey.wasPressedThisFrame)
             {
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed * _stats.DashSpeed, _stats.Acceleration * 15f * Time.fixedDeltaTime);
                 _animator.SetBool("isDashing", true);

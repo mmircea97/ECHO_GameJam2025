@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
     {
 
 
-        SceneManager.LoadSceneAsync("Test 2");
+        SceneManager.LoadSceneAsync("Design full");
         //StopMusic();
         
     }
