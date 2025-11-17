@@ -24,7 +24,6 @@ public class MapReveal : MonoBehaviour
     void Update()
     {
         dimension = (1 / Vector2.Distance(this.transform.position, gameObject.transform.position) / maxDistance) * scaleMultiplier;
-        Debug.Log(Vector2.Distance(this.transform.position, gameObject.transform.position));
         this.transform.localScale = new Vector3(dimension, dimension, dimension);
     }
 }

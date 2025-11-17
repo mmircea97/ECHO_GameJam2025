@@ -28,7 +28,7 @@ namespace TarodevController
 
         [SerializeField]
         private Animator _animator;
-     
+
 
         #region Interface
 
@@ -54,7 +54,7 @@ namespace TarodevController
         private void Update()
         {
 
-          
+
 
             _time += Time.deltaTime;
             GatherInput();
@@ -62,17 +62,14 @@ namespace TarodevController
             if (_grounded)
             {
                 secondJump = true;
-                if(Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed)
-                {     
+                if (Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed)
+                {
                     _animator.SetBool("isWalking", true);
                 }
                 else _animator.SetBool("isWalking", false);
             }
 
-            /*if (!_grounded)
-                _animator.SetBool("isJumping", true);*/
-
-            if(!_grounded)
+            if (!_grounded)
             {
                 if (Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed)
                 {
@@ -87,9 +84,6 @@ namespace TarodevController
                 WaitTwoSecs();
 
             }
-            
-
-
 
 
             if (!_grounded && secondJump)
@@ -105,14 +99,19 @@ namespace TarodevController
                 secondJump = true;
                 //_stats.MaxFallSpeed += _stats.SlideSpeed;
             }
-            
-            
-            if((Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed) && Keyboard.current.leftShiftKey.wasPressedThisFrame)
+
+
+
+            if ((Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed) && Keyboard.current.leftShiftKey.wasPressedThisFrame)
             {
+
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed * _stats.DashSpeed, _stats.Acceleration * 15f * Time.fixedDeltaTime);
                 _animator.SetBool("isDashing", true);
             }
-            else { _animator.SetBool("isDashing", false); }
+            else
+            { 
+                _animator.SetBool("isDashing", false); }
+
 
 
 
@@ -196,6 +195,7 @@ namespace TarodevController
             // Ground and Ceiling
             bool groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
             bool ceilingHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.up, _stats.GrounderDistance, ~_stats.PlayerLayer);
+           
 
             // Hit a Ceiling
             if (ceilingHit) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
@@ -204,6 +204,7 @@ namespace TarodevController
             if (!_grounded && groundHit)
             {
                 _grounded = true;
+                _frameVelocity.x = 0f;
                 _coyoteUsable = true;
                 _bufferedJumpUsable = true;
                 _endedJumpEarly = false;
@@ -309,6 +310,7 @@ namespace TarodevController
         {
             Vector3 direction = transform.position - other.gameObject.transform.position;
 
+
             if (other.collider.CompareTag("Spring"))
             {
                 ExecuteBounce();
@@ -316,17 +318,18 @@ namespace TarodevController
 
             if (other.collider.CompareTag("Platform"))
             {
-                //if (other.collider.transform.position.x > this.transform.position.x || other.collider.transform.position.x < this.transform.position.x)
-                if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                if ((other.collider.transform.position.x > this.transform.position.x || other.collider.transform.position.x < this.transform.position.x) && !Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
+                //if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
                 {
                     isHanging = true;
+
                     //if(!Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
                     _animator.SetBool("isHanging", true);
                 }
                 else
                 {
-                    if(direction.y>0)
                         isHanging = false;
+                    _animator.SetBool("isHanging", false);
                 }
                 /*if (other.collider.transform.position.y < this.transform.position.y && Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
                     isHanging = false;*/
@@ -338,7 +341,10 @@ namespace TarodevController
 
         private void OnCollisionExit2D(Collision2D other)
         {
+            //Debug.Log("FRAME VELOCITY IS " + _frameVelocity.x +" HERE!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
             isHanging = false;
+
             _animator.SetBool("isHanging", false);
             _stats.MaxFallSpeed = 40f;
             if (other.gameObject.CompareTag("Platform"))
@@ -347,8 +353,25 @@ namespace TarodevController
 
         private void OnCollisionStay2D(Collision2D other)
         {
+            Vector3 direction = transform.position - other.gameObject.transform.position;
 
-            if(other.gameObject.CompareTag("Platform"))
+            if (other.collider.CompareTag("Platform"))
+            {
+                if ((other.collider.transform.position.x > this.transform.position.x || other.collider.transform.position.x < this.transform.position.x) && !Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
+                {
+                    isHanging = true;
+                    _animator.SetBool("isHanging", true);
+                }
+                else
+                {
+                    isHanging = false;
+                    _animator.SetBool("isHanging", false);
+
+                }
+            }
+
+
+                if (other.gameObject.CompareTag("Platform"))
                 this.transform.parent = other.gameObject.transform;
             if (isHanging)
             {
