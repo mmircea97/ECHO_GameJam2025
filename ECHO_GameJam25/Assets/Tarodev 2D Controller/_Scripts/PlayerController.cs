@@ -54,7 +54,12 @@ namespace TarodevController
         private void Update()
         {
 
-            if(Keyboard.current.digit2Key.wasPressedThisFrame)
+            if (Keyboard.current.digit1Key.wasPressedThisFrame)
+            {
+                transform.root.position = new Vector3(-15.05f, 29.96f, 0f);
+            }
+
+            if (Keyboard.current.digit2Key.wasPressedThisFrame)
             {
                 transform.root.position = new Vector3(98.09f, -4.13f, 0f);
             }
