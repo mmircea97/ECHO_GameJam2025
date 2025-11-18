@@ -1,9 +1,7 @@
 using TMPro;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+
 
 public class OnHoverChanges : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
