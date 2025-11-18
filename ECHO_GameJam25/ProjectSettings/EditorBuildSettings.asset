@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Design full.unity
     guid: fe24e9862e52b8041811aed43ebf1f32
+  - enabled: 1
+    path: Assets/Scenes/CreditsScreen.unity
+    guid: 11e18f2225ac6c24eb73a16684898b82
+  - enabled: 1
+    path: Assets/Scenes/HallOfFame.unity
+    guid: a8fd0aec321858d4db4baf8800737133
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 3aefded2afcf683489ac82e5d2a1de68, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 5e49e24823291fe45bb3e1f365c32727, type: 3}

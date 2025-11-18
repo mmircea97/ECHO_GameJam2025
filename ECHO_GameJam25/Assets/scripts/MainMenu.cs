@@ -25,6 +25,16 @@ public class MainMenu : MonoBehaviour
         
     }
 
+    public void CreditScreen()
+    {
+        SceneManager.LoadSceneAsync("CreditsScreen");
+    }
+
+    public void HOFScreen()
+    {
+        SceneManager.LoadSceneAsync("HallOfFame");
+    }
+
    
     public void QuitGame()
     {
