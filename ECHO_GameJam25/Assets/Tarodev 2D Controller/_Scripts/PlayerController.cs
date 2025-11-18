@@ -54,7 +54,20 @@ namespace TarodevController
         private void Update()
         {
 
+            if(Keyboard.current.digit2Key.wasPressedThisFrame)
+            {
+                transform.root.position = new Vector3(98.09f, -4.13f, 0f);
+            }
 
+            if (Keyboard.current.digit3Key.wasPressedThisFrame)
+            {
+                transform.root.position = new Vector3(189.77f, -34.03f, 0f);
+            }
+
+            if (Keyboard.current.digit4Key.wasPressedThisFrame)
+            {
+                transform.root.position = new Vector3(287.72f, -52.07f, 0f);
+            }
 
             _time += Time.deltaTime;
             GatherInput();
@@ -316,6 +329,11 @@ namespace TarodevController
                 ExecuteBounce();
             }
 
+            if(other.collider.CompareTag("ProjectileSpike"))
+            {
+                transform.root.position = new Vector3(189.77f, -34.03f, 0f);
+            }
+
             if (other.collider.CompareTag("Platform"))
             {
                 if ((other.collider.transform.position.x > this.transform.position.x || other.collider.transform.position.x < this.transform.position.x) && !Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer))
@@ -371,8 +389,17 @@ namespace TarodevController
             }
 
 
-                if (other.gameObject.CompareTag("Platform"))
-                this.transform.parent = other.gameObject.transform;
+            if (other.gameObject.CompareTag("Platform"))
+            {
+                if (Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed)
+                {
+                    this.transform.parent = null;
+                }
+                else
+                {
+                    this.transform.parent = other.gameObject.transform;
+                }
+            }
             if (isHanging)
             {
                 HandleHanging();

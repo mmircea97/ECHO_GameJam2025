@@ -40,6 +40,13 @@ public class DeathWall : MonoBehaviour
         if (!isActive) return;
         if (pointA == null || pointB == null) return;
 
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj.transform.position == respawnPoints[0].transform.position)
+        {
+            ResetWall();
+            isActive = false;
+        }
+
         // ░░ Mișcare DOAR pe axa X ░░
         float targetX = targetPoint.position.x;
 
@@ -92,6 +99,7 @@ public class DeathWall : MonoBehaviour
     {
         transform.position = startPos;
         targetPoint = pointB;
+        transform.localScale = new Vector3(0.25f, 0.25f, 1f);
     }
 
     public void ActivateWall()

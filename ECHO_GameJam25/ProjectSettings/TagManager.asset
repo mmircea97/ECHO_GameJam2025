@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spring
   - Platform
+  - ProjectileSpike
   layers:
   - Default
   - TransparentFX

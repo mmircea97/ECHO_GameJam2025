@@ -3,7 +3,7 @@ using UnityEngine;
 public class RemoveDarkness : MonoBehaviour
 {
     [SerializeField]
-    private GameObject gameObject;
+    private GameObject playerHalo;
 
     [SerializeField]
     private GameObject darknessLayer;
@@ -12,9 +12,9 @@ public class RemoveDarkness : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Destroy(playerHalo);
             Destroy(darknessLayer);
+            gameObject.SetActive(false);
         }
-
     }
 }
