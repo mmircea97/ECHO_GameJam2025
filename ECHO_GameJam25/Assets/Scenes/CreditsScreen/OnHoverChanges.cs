@@ -37,7 +37,7 @@ public class OnHoverChanges : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     void Update()
     {
-
+        
     }
 
     public void OnPointerEnter(PointerEventData eventData)
