@@ -1037,11 +1037,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 954926743}
+  - {fileID: 1635140540}
   - {fileID: 2038438002}
   - {fileID: 708377879}
   - {fileID: 323757413}
   - {fileID: 175885823}
-  - {fileID: 1635140540}
   - {fileID: 309688077}
   - {fileID: 194135939}
   - {fileID: 1527127056}
@@ -1655,6 +1655,7 @@ GameObject:
   - component: {fileID: 1635140540}
   - component: {fileID: 1635140542}
   - component: {fileID: 1635140541}
+  - component: {fileID: 1635140543}
   m_Layer: 5
   m_Name: Theo
   m_TagString: Untagged
@@ -1780,6 +1781,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635140539}
   m_CullTransparentMesh: 1
+--- !u!114 &1635140543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635140539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05469dd359b706948bfe7b0325b56c4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTeamMember: {fileID: 1635140541}
+  hoverColor: {r: 0.32704395, g: 0, b: 0.29990783, a: 0}
+  image: {fileID: 954926741}
+  sprite: {fileID: -8045360313744895355, guid: b59b97ed0a4f55446be6b951cf89a92c, type: 3}
+  audioSource: {fileID: 144280421}
+  song: {fileID: 8300000, guid: 9e3409698e4a06b4595893c9099d3b48, type: 3}
+  teamMembers:
+  - {fileID: 2038438003}
+  - {fileID: 708377880}
+  - {fileID: 323757414}
+  - {fileID: 175885824}
+  - {fileID: 309688078}
+  - {fileID: 194135940}
+  - {fileID: 1527127057}
+  - {fileID: 1585823425}
 --- !u!1 &1936246644
 GameObject:
   m_ObjectHideFlags: 0
